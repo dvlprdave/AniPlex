@@ -1,28 +1,35 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+
+import styled, { ThemeProvider } from 'styled-components';
+import theme from './config/theme';
+
+import Header from './Components/Header';
+import ProfileSearch from './Components/ProfileSearch';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <ThemeProvider theme={theme}>
+        <AppWrapper>
+          <Header />
+          <ProfileSearch />
+        </AppWrapper>
+      </ThemeProvider>
     );
   }
 }
+
+const AppWrapper = styled.div`
+  background-color: #473759;
+  min-height: 100vh;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  text-align: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+`
 
 export default App;
