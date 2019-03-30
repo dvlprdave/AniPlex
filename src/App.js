@@ -20,7 +20,11 @@ class App extends Component {
 }
 
 const AppWrapper = styled.div`
-  background-color: #473759;
+  /* background-color: #473759; */
+  background-color: #000000;
+background-image: linear-gradient(147deg, #000000 0%, #04619f 74%);
+
+
   min-height: 100vh;
   
   display: flex;
@@ -28,7 +32,8 @@ const AppWrapper = styled.div`
   justify-content: center;
 
   text-align: center;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(10px + 1vmin);
+  /* font-size: calc(1vw + 1vh + .5vmin); */
   color: white;
 `
 

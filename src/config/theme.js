@@ -20,6 +20,13 @@ const fontFamily = {
   cursive: `'Lilita One', cursive`
 }
 
+const buttonStyle = {
+  border: 'none',
+  backgroundColor: '#4834d4',
+  backgroundImage: 'linear-gradient(315deg, #4834d4 0%, #0c0c0c 74%)',
+  borderRadius: '1rem'
+}
+
 const breakpoints = {
   tablet: '1200px',
   phone: '600px'
@@ -33,6 +40,7 @@ const theme = {
   fontFamily,
   maxWidth: '1000px',
   baseFontSize: '16px',
+  buttonStyle
 }
 
 export default theme

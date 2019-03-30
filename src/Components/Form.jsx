@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-
-
 class Form extends Component {
 
   filterUpdate = () => {
@@ -11,28 +9,44 @@ class Form extends Component {
 
   render() {
     return (
-      <form onSubmit={this.props.handleButtonSearch}>
+      <FormWrapper onSubmit={this.props.handleButtonSearch}>
         <Input
           type="text"
           name="anime"
           placeholder="Enter title"
           ref={value => this.myValue = value}
         />
-        <button>Search Anime Title</button>
-      </form>
+        <FormButton>Search</FormButton>
+      </FormWrapper>
     )
   }
 }
+
+// Form styles
+const FormWrapper = styled.form`
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+
+`
 
 const Input = styled.input`
   background: ${props => props.theme.colors.inputBackground};
   color: ${props => props.theme.colors.inputTextActive};
   line-height: 2.4rem;
-  font-size: 1.8rem;
-  vertical-align: middle;
+  font-size: 1.5rem;
   border: none;
   border-radius: 5px;
-  margin-bottom: 2rem;
+  padding: .4rem;
+`
+
+const FormButton = styled.button`
+  border: ${props => props.theme.buttonStyle.border};
+  padding: .8rem 1.8rem;
+  background: ${props => props.theme.colors.inputBackground};
+  color: white;
+  text-transform: uppercase;
+  margin-left: .5rem;
 `
 
 export default Form

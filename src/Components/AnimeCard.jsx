@@ -3,40 +3,54 @@ import styled from 'styled-components'
 
 class AnimeCard extends Component {
   render() {
-    const { animeTitle, animeTitleJp, animeRating, imageUrl, dataItems } = this.props
+    const { dataItems } = this.props
     return (
       <AnimeCardWrapper>
-        <ul>
-          {dataItems.map((item) => {
-            return <h1>{item.attributes.titles.en}</h1>
+        {dataItems
+          .filter(item => item.rated !== 'Rx' && item.score !== 0 && item.type === 'TV') // Remove adult content and un-scored titles
+          .map((item, index) => {
+            return (
+              <AnimeCardItem>
+                <PosterImg src={item.image_url} alt="poster" />
+                <CardTitle key={index}>{item.title}</CardTitle>
+                <p>{item.score}</p>
+                <p>{item.rated}</p>
+              </AnimeCardItem>
+            )
           })}
-        </ul>
-        <PosterImg src={imageUrl} alt="poster" />
-        <h4>{animeTitle}</h4>
-        <h4>{animeTitleJp}</h4>
-        <p>Score: {animeRating}</p>
       </AnimeCardWrapper>
     )
   }
 }
 
 const AnimeCardWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  max-width: 1200px;
 
-  width: 500px;
+  display: grid;  
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-gap: 1rem;
+
   margin: 0 auto;
   padding: 2rem 2rem;
   border-radius: 1rem;
-  /* background: ${props => props.theme.colors.inputBackground}; */
-
-  text-align: justify;
+  text-align: center;
 `
+const AnimeCardItem = styled.div`
+  padding: 0;
+  margin: 0;
+`
+
 const PosterImg = styled.img`
-  object-fit: cover;
-  height: 450px;
-  width: 350px;
+  object-fit: contain;
+  height: 300px;
+  width: 250px;
+  margin-bottom: 1rem;
   border-radius: 1rem;
+`
+
+const CardTitle = styled.div`
+  /* width: 250px; */
+  padding: .5rem;
+  word-wrap: break-word;
 `
 export default AnimeCard

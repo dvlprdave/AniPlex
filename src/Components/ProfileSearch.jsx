@@ -4,56 +4,51 @@ import AnimeCard from './AnimeCard';
 
 class ProfileSearch extends Component {
   state = {
+    dataItems: [],
     search: '',
     animeSearched: false,
-    dataItems: [],
     imageUrl: '',
     animeTitle: null,
-    animeTitleJp: null,
     animeRating: null,
-    synopsis: null,
+    synopsis: null
   }
 
-  componentDidMount(e) {
+  componentDidMount() {
     this.handleButtonSearch()
   }
 
   handleButtonSearch = async (e) => {
     e.preventDefault()
+
     const animeQuery = e.target.elements.anime.value
-    const url = 'https://kitsu.io/api/edge'
-    const response = await fetch(`${url}/anime?filter[text]=${animeQuery}`)
+    const url = 'https://api.jikan.moe/v3'
+    const response = await fetch(`${url}/search/anime?q=${animeQuery}&page=1`)
     const animeData = await response.json()
-    // const animeDataArray = await animeData => this.setState({ dataItems: animeData })
-    console.log(animeData)
-    // animeData.results.sort((a, b) => a.episodes - b.episodes).forEach(anime => console.log(anime))
 
     this.setState({
-      dataItems: animeData.data,
       anime: !this.state.animeSearched,
-      animeTitle: animeData.data[0].attributes.titles.en,
-      animeTitleJp: animeData.data[0].attributes.titles.ja_jp,
-      animeRating: animeData.data[0].attributes.averageRating,
-      imageUrl: animeData.data[0].attributes.posterImage.small
+      dataItems: animeData.results,
+      animeTitle: animeData.results.title,
+      animeRating: animeData.results.score,
+      imageUrl: animeData.results.image_url,
+      synopsis: animeData.results.synopsis
     })
-
-    console.log(animeData.data);
   }
 
 
   render() {
-    const { animeRating, imageUrl, animeTitle, animeTitleJp, dataItems } = this.state
+    const { animeRating, imageUrl, animeTitle, dataItems, synopsis } = this.state
     return (
       <div>
         <Form handleButtonSearch={this.handleButtonSearch} />
         {this.state.anime
           ?
           <AnimeCard
-            animeRating={animeRating}
-            imageUrl={imageUrl}
-            animeTitle={animeTitle}
-            animeTitleJp={animeTitleJp}
+            // animeRating={animeRating}
+            // imageUrl={imageUrl}
+            // animeTitle={animeTitle}
             dataItems={dataItems}
+          // synopsis={synopsis}
           />
           : null}
       </div>
