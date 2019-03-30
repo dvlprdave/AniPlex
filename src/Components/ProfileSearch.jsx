@@ -5,17 +5,12 @@ import AnimeCard from './AnimeCard';
 class ProfileSearch extends Component {
   state = {
     dataItems: [],
-    search: '',
-    animeSearched: false,
-    imageUrl: '',
-    animeTitle: null,
-    animeRating: null,
-    synopsis: null
+    animeSearched: false
   }
 
-  componentDidMount() {
-    this.handleButtonSearch()
-  }
+  // componentDidMount() {
+  //   this.handleButtonSearch()
+  // }
 
   handleButtonSearch = async (e) => {
     e.preventDefault()
@@ -28,27 +23,19 @@ class ProfileSearch extends Component {
     this.setState({
       anime: !this.state.animeSearched,
       dataItems: animeData.results,
-      animeTitle: animeData.results.title,
-      animeRating: animeData.results.score,
-      imageUrl: animeData.results.image_url,
-      synopsis: animeData.results.synopsis
     })
   }
 
 
   render() {
-    const { animeRating, imageUrl, animeTitle, dataItems, synopsis } = this.state
+    const { dataItems } = this.state
     return (
       <div>
         <Form handleButtonSearch={this.handleButtonSearch} />
         {this.state.anime
           ?
           <AnimeCard
-            // animeRating={animeRating}
-            // imageUrl={imageUrl}
-            // animeTitle={animeTitle}
             dataItems={dataItems}
-          // synopsis={synopsis}
           />
           : null}
       </div>

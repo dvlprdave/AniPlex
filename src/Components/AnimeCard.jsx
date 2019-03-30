@@ -4,15 +4,16 @@ import styled from 'styled-components'
 class AnimeCard extends Component {
   render() {
     const { dataItems } = this.props
+    console.log(dataItems);
     return (
       <AnimeCardWrapper>
         {dataItems
           .filter(item => item.rated !== 'Rx' && item.score !== 0 && item.type === 'TV') // Remove adult content and un-scored titles
-          .map((item, index) => {
+          .map((item) => {
             return (
-              <AnimeCardItem>
+              <AnimeCardItem key={item.mal_id}>
                 <PosterImg src={item.image_url} alt="poster" />
-                <CardTitle key={index}>{item.title}</CardTitle>
+                <CardTitle>{item.title}</CardTitle>
                 <p>{item.score}</p>
                 <p>{item.rated}</p>
               </AnimeCardItem>
@@ -49,7 +50,6 @@ const PosterImg = styled.img`
 `
 
 const CardTitle = styled.div`
-  /* width: 250px; */
   padding: .5rem;
   word-wrap: break-word;
 `
