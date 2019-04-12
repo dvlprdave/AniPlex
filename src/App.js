@@ -5,6 +5,7 @@ import theme from './config/theme';
 
 import Header from './Components/Header';
 import ProfileSearch from './Components/ProfileSearch';
+import HomePage from './Components/HomePage';
 
 class App extends Component {
   render() {
@@ -13,6 +14,7 @@ class App extends Component {
         <AppWrapper>
           <Header />
           <ProfileSearch />
+          <HomePage />
         </AppWrapper>
       </ThemeProvider>
     );
@@ -22,15 +24,11 @@ class App extends Component {
 const AppWrapper = styled.div`
   /* background-color: #473759; */
   background-color: #000000;
-background-image: linear-gradient(147deg, #000000 0%, #04619f 74%);
-
-
+  background-image: linear-gradient(147deg, #000000 0%, #04619f 74%);
   min-height: 100vh;
-  
   display: flex;
   flex-direction: column;
   justify-content: center;
-
   text-align: center;
   font-size: calc(10px + 1vmin);
   /* font-size: calc(1vw + 1vh + .5vmin); */
