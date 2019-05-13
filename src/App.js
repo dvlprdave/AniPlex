@@ -2,37 +2,38 @@ import React, { Component } from 'react';
 
 import styled, { ThemeProvider } from 'styled-components';
 import theme from './config/theme';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 import Header from './Components/Header';
-import ProfileSearch from './Components/ProfileSearch';
-import HomePage from './Components/HomePage';
+import HomePage from './Components/Home Page/HomePage';
+import RoutePage from './Components/RoutePage'
+
 
 class App extends Component {
   render() {
     return (
-      <ThemeProvider theme={theme}>
-        <AppWrapper>
-          <Header />
-          <ProfileSearch />
-          <HomePage />
-        </AppWrapper>
-      </ThemeProvider>
+      <Router>
+        <ThemeProvider theme={theme}>
+          <AppWrapper>
+            <Header />
+            <Switch>
+              <Route path='/' exact component={HomePage} />
+              <Route path='/route page' component={RoutePage} />
+            </Switch>
+          </AppWrapper>
+        </ThemeProvider>
+      </Router>
     );
   }
 }
 
 const AppWrapper = styled.div`
-  /* background-color: #473759; */
-  background-color: #000000;
-  background-image: linear-gradient(147deg, #000000 0%, #04619f 74%);
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  /* background-color: #000000; */
+  /* background-image: linear-gradient(147deg, #000000 0%, #04619f 74%); */
+  /* height: 100vh; */
   text-align: center;
-  font-size: calc(10px + 1vmin);
-  /* font-size: calc(1vw + 1vh + .5vmin); */
+  /* font-size: calc(10px + 1vmin); */
   color: white;
-`
+        `
 
 export default App;

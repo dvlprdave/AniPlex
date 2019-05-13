@@ -31,12 +31,10 @@ const FormWrapper = styled.form`
 `
 
 const Input = styled.input`
-  background: ${props => props.theme.colors.inputBackground};
-  color: ${props => props.theme.colors.inputTextActive};
   line-height: 2.4rem;
   font-size: 1.5rem;
   border: none;
-  border-radius: 5px;
+  border-bottom: 1px solid black;
   padding: .4rem;
 `
 
