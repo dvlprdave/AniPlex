@@ -15,7 +15,6 @@ const Header = () => (
 
 const Wrapper = styled.div`
   width: 100%;
-  background: white;
 `
 
 const HeaderBar = styled.div`
@@ -30,7 +29,8 @@ const HeaderBar = styled.div`
 `
 
 const Title = styled.h1`
-  /* margin-right: auto; */
+  margin-left: 1rem;
+  color: ${props => props.theme.colors.white};
 `
 const SearchField = styled.div`
   padding-right: 1rem;

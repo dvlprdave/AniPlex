@@ -1,3 +1,7 @@
+/* -------------------------------------------------------------------------- */
+/*            Individual Anime cards that appear on the home page            */
+/* -------------------------------------------------------------------------- */
+
 import React from "react";
 import styled from "styled-components"
 
@@ -5,8 +9,8 @@ export const TopAnime = ({ title, image }) => {
   return (
     <TopAnimeWrapper>
       <TopAniContainer>
-        <h3>{title}</h3>
-        <img src={image} alt='poster' />
+        <AnimeImage src={image} alt='poster' />
+        <AnimeTitle>{title}</AnimeTitle>
       </TopAniContainer>
     </TopAnimeWrapper>
   );
@@ -14,9 +18,18 @@ export const TopAnime = ({ title, image }) => {
 
 const TopAnimeWrapper = styled.div`
   display: flex;
-  
 `
-
 const TopAniContainer = styled.div`
   flex: 1;
+  line-height: 1.4;
+`
+const AnimeImage = styled.img`
+  object-fit: cover;
+  width: 100%;
+  height: 300px;
+  border-radius: 3px;
+`
+const AnimeTitle = styled.h4`
+  text-align: left;
+  margin-top: 5px;
 `

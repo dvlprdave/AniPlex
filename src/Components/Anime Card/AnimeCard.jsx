@@ -1,6 +1,9 @@
+/* -------------------------------------------------------------------------- */
+/*           Titles that get displayed when doing a specific search           */
+/* -------------------------------------------------------------------------- */
+
 import React from 'react';
 import styled from 'styled-components'
-
 
 const AnimeCard = ({ dataItems }) => {
   return (
@@ -28,15 +31,13 @@ const AnimeCard = ({ dataItems }) => {
 }
 
 const AnimeCardWrapper = styled.div`
-  max-width: 1200px;
-
   display: grid;  
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   grid-gap: 2rem;
-
+  
+  max-width: 1200px;
   margin: 2rem auto;
   padding-top: 2rem 2rem;
-  border-radius: 1rem;
 `
 
 const Card = styled.article`
@@ -63,7 +64,7 @@ const Poster = styled.div`
 const PosterImg = styled.img`
   width: 100%;
   height: 350px;
-  object-fit: contain;
+  object-fit: cover;
   border-radius: 1rem;
 `
 

@@ -1,4 +1,5 @@
 const colors = {
+  white: '#fff',
   primary: '#187791', // Color for buttons or links
   background: '#9b89b3', // Background color
   button: '#599bb3', // Button color 
@@ -20,6 +21,11 @@ const fontFamily = {
   cursive: `'Lilita One', cursive`
 }
 
+const formStyle = {
+  borderRadius: '5px',
+  color: 'red'
+}
+
 const buttonStyle = {
   border: 'none',
   backgroundColor: '#4834d4',
@@ -38,6 +44,7 @@ const theme = {
   fontSize,
   breakpoints,
   fontFamily,
+  formStyle,
   maxWidth: '1000px',
   baseFontSize: '16px',
   buttonStyle

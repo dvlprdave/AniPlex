@@ -31,18 +31,17 @@ const FormWrapper = styled.form`
 `
 
 const Input = styled.input`
-  line-height: 2.4rem;
-  font-size: 1.5rem;
-  border: none;
-  border-bottom: 1px solid black;
-  padding: .4rem;
+  font-size: 1.2rem;
+  padding: .3em;
+  border-radius: ${props => props.theme.formStyle.borderRadius};
 `
 
 const FormButton = styled.button`
   border: ${props => props.theme.buttonStyle.border};
-  padding: .8rem 1.8rem;
+  border-radius: ${props => props.theme.formStyle.borderRadius};
   background: ${props => props.theme.colors.inputBackground};
-  color: white;
+  padding: .8rem 1.8rem;
+  color: ${props => props.theme.colors.white};
   text-transform: uppercase;
   margin-left: .5rem;
 `
