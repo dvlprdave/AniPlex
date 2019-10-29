@@ -25,9 +25,7 @@ class Form extends Component {
 // Form styles
 const FormWrapper = styled.form`
   display: flex;
-  justify-content: center;
   margin-top: 1rem;
-
 `
 
 const Input = styled.input`

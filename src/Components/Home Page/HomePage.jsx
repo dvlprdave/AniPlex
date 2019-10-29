@@ -10,50 +10,6 @@ class HomePage extends Component {
 
 
   async getData() {
-    // const api = "https://kitsu.io/api/edge";
-
-    // // const animeData = await fetch(`${api}/trending/anime`)
-    // // const json = await animeData.json()
-
-    // // console.log(json.data.attributes.titles.en);
-
-    // const urls = [
-    //   `${api}/trending/anime`
-    // ]
-
-    // return Promise.all(
-    //   urls.map(async url => {
-    //     return await fetch(url); // fetch data from urls
-    //   })
-    // )
-    //   .then((responses) => Promise.all(responses.map(resp => resp.json())) // turn data into JSON
-    //     .then(animeData => {
-    //       console.log(animeData[0]);
-    //       const topTvFiltered = animeData
-    //       // const topTvFiltered = data.attributes.filter(item => item.averageRating >= 85) // filter out top 6 
-    //       // const topAiringFiltered = data[1].top.filter(item => item.rank <= 6)
-    //       // const topUpcomingFiltered = data[2].top.filter(item => item.rank <= 6)
-
-    //       this.setState({
-    //         topTv: topTvFiltered
-    //         // topAiring: topAiringFiltered,
-    //         // topUpcoming: topUpcomingFiltered
-    //       });
-    //       console.log(animeData)
-    //     })
-    //   )
-    //   .catch(err => console.log("There was an error:" + err))
-
-    // const api = fetch('https://api.jikan.moe/v3', {
-    //   method: 'GET',
-    //   mode: 'no-cors',
-    //   headers: new Headers({
-    //     'Access-Control-Allow-Origin': 'https://api.jikan.moe/v3',
-    //     'Vary': 'Origin',
-    //     'Content-Type': 'application/json'
-    //   })
-    // });
-
     const api = "https://api.jikan.moe/v3";
     const urls = [
       // `${api}/top/anime/1`,
@@ -70,13 +26,13 @@ class HomePage extends Component {
       .then((responses) => Promise.all(responses.map(resp => resp.json())) // turn data into JSON
         .then(data => {
           const topTvFiltered = data[0].top.filter(item => item.rank <= 5) // filter out top 6 
-          const topAiringFiltered = data[1].top.filter(item => item.rank <= 6)
-          const topUpcomingFiltered = data[2].top.filter(item => item.rank <= 6)
+          const topAiringFiltered = data[1].top.filter(item => item.rank <= 5)
+          const topUpcomingFiltered = data[2].top.filter(item => item.rank <= 5)
 
           this.setState({
             topTv: topTvFiltered,
             topAiring: topAiringFiltered,
-            topUpcoming: topUpcomingFiltered
+            topUpcoming: topUpcomingFiltered,
           });
           console.log(data)
         })
@@ -97,8 +53,8 @@ class HomePage extends Component {
           {topTv.map((item, index) => (
             <TopAnime
               key={index}
-              title={item.title}
               image={item.image_url}
+              title={item.title}
             />
           ))}
         </TopAni>
@@ -108,8 +64,8 @@ class HomePage extends Component {
           {topAiring.map((item, index) => (
             <TopAnime
               key={index}
-              title={item.title}
               image={item.image_url}
+              title={item.title}
             />
           ))}
         </TopAni>
@@ -119,8 +75,8 @@ class HomePage extends Component {
           {topUpcoming.map((item, index) => (
             <TopAnime
               key={index}
-              title={item.title}
               image={item.image_url}
+              title={item.title}
             />
           ))}
         </TopAni>
@@ -132,6 +88,7 @@ class HomePage extends Component {
 
 const HomeWrapper = styled.div`
   height: 100%;
+  padding: 6rem 4.5rem;
   color: ${props => props.theme.colors.white};
 `
 
@@ -140,8 +97,7 @@ const TopAni = styled.div`
   margin: 0 auto;
   display: grid;
   grid-gap: 1rem;
-  /* grid-template-columns: repeat(6, 1fr); */
-  grid-template-columns: repeat(6, minmax(200px, 1fr) );
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   grid-template-rows: auto;
   padding: 1rem;
 `

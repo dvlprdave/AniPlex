@@ -9,7 +9,9 @@ export const TopAnime = ({ title, image }) => {
   return (
     <TopAnimeWrapper>
       <TopAniContainer>
-        <AnimeImage src={image} alt='poster' />
+        <AnimeLink href="#">
+          <AnimeImage src={image} alt='poster' />
+        </AnimeLink>
         <AnimeTitle>{title}</AnimeTitle>
       </TopAniContainer>
     </TopAnimeWrapper>
@@ -23,6 +25,10 @@ const TopAniContainer = styled.div`
   flex: 1;
   line-height: 1.4;
 `
+const AnimeLink = styled.a`
+  
+`
+
 const AnimeImage = styled.img`
   object-fit: cover;
   width: 100%;

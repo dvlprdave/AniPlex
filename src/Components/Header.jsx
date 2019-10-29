@@ -1,39 +1,33 @@
 import React from 'react'
 import styled from 'styled-components'
-import ProfileSearch from './ProfileSearch';
+import { Link } from 'react-router-dom';
+import AnimeSearchForm from './AnimeSearchForm';
 
 const Header = () => (
-  <Wrapper>
-    <HeaderBar>
+  <HeaderBar>
+    <Link to='/'>
       <Title>Anidex</Title>
-      <SearchField>
-        <ProfileSearch />
-      </SearchField>
-    </HeaderBar>
-  </Wrapper>
+    </Link>
+    <AnimeSearchForm />
+  </HeaderBar>
 )
 
-const Wrapper = styled.div`
-  width: 100%;
-`
-
 const HeaderBar = styled.div`
-  max-width: 1200px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   flex: 1;
-  padding: 1rem 0;
-  margin: 0 auto;
+  padding: 0 3rem;
   background: inherit;
   color: black;
+
+  @media screen and (max-width: 560px) {
+    flex-direction: column;
+  }
 `
 
 const Title = styled.h1`
-  margin-left: 1rem;
   color: ${props => props.theme.colors.white};
-`
-const SearchField = styled.div`
-  padding-right: 1rem;
 `
 
 export default Header
