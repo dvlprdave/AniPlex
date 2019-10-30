@@ -17,6 +17,7 @@ const HeaderBar = styled.div`
   justify-content: space-between;
   align-items: center;
   flex: 1;
+  height: 10vh;
   padding: 0 3rem;
   background: inherit;
   color: black;

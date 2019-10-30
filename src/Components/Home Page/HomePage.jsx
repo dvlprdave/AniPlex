@@ -5,14 +5,13 @@ class HomePage extends Component {
   state = {
     topTv: [],
     topAiring: [],
-    topUpcoming: []
+    topUpcoming: [],
   }
 
 
   async getData() {
     const api = "https://api.jikan.moe/v3";
     const urls = [
-      // `${api}/top/anime/1`,
       `${api}/top/anime/1/tv`,
       `${api}/top/anime/1/airing`,
       `${api}/top/anime/1/upcoming`,
@@ -55,6 +54,7 @@ class HomePage extends Component {
               key={index}
               image={item.image_url}
               title={item.title}
+              item={item}
             />
           ))}
         </TopAni>
@@ -66,6 +66,7 @@ class HomePage extends Component {
               key={index}
               image={item.image_url}
               title={item.title}
+              item={item}
             />
           ))}
         </TopAni>
@@ -77,6 +78,7 @@ class HomePage extends Component {
               key={index}
               image={item.image_url}
               title={item.title}
+              item={item}
             />
           ))}
         </TopAni>

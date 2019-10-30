@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Header from './Components/Header';
 import HomePage from './Components/Home Page/HomePage';
 import RoutePage from './Components/RoutePage'
-// import AnimeSearchForm from './Components/AnimeSearchForm';
+import AnimeDetails from './Components/AnimeDetails';
 
 
 class App extends Component {
@@ -20,7 +20,7 @@ class App extends Component {
             <Switch>
               <Route path='/' exact component={HomePage} />
               <Route path='/route page' component={RoutePage} />
-              {/* <Route path='/search' exact component={AnimeSearchForm} /> */}
+              <Route path='/:animeId' exact component={AnimeDetails} />
             </Switch>
           </AppWrapper>
         </ThemeProvider>
