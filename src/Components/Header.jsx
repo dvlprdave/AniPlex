@@ -6,7 +6,7 @@ import AnimeSearchForm from './AnimeSearchForm';
 const Header = () => (
   <HeaderBar>
     <Link to='/'>
-      <Title>Anidex</Title>
+      <Title>AniPlex</Title>
     </Link>
     <AnimeSearchForm />
   </HeaderBar>
@@ -22,6 +22,10 @@ const HeaderBar = styled.div`
   background: inherit;
   color: black;
 
+  a {
+    /* Remove text decoration from Router Link */
+    text-decoration: none; 
+  }
   @media screen and (max-width: 560px) {
     flex-direction: column;
   }

@@ -4,57 +4,173 @@ import styled from 'styled-components';
 const AnimeDetails = (props) => {
   const API = 'https://api.jikan.moe/v3/anime'
 
-  const [anime, setAnime] = useState([])
+  const [animeReq, setAnimeReq] = useState({
+    fetching: false,
+    anime: []
+  })
 
   useEffect(() => {
     const getAnime = async () => {
+      setAnimeReq({ fetching: true })
+
       const response = await fetch(`${API}/${props.match.params.animeId}`)
       const data = await response.json()
 
       console.log(data);
-      setAnime(data) // set initial state to hold data from our API call
+      setAnimeReq({ fetching: false, anime: data }) // set initial state to hold data from our API call
     }
+
     getAnime()
   }, []) // [] prevents useEffect from running in an infinite loop
 
+  const { fetching, anime } = animeReq;
+
   return (
-    <> {anime &&
-      <AnimeDetailsWrapper>
-        <Poster src={anime.image_url} />
-        <Details>
-          <Title>{anime.title}</Title>
-          <TitleJpn>{anime.title_japanese}</TitleJpn>
-        </Details>
-      </AnimeDetailsWrapper>
-    }
+    <>
+      {fetching && 'Fetching...'}
+      {/* loading inicator TODO: add gif or style text */}
+      {anime &&
+        <AnimeDetailsWrapper>
+          <AnimeDetailsContainer>
+            <Poster src={anime.image_url} />
+            <Details>
+              <Title>{anime.title}</Title>
+              <TitleJpn>{anime.title_japanese}</TitleJpn>
+              <Score>{anime.score || 'N/A'}</Score>
+              {/* If no score then display N/A */}
+              <SongList>
+                <h3>Opening Themes</h3>
+                {anime.opening_themes ? // Make sure data is fully loaded before component renders
+                  anime.opening_themes
+                    .map((song, index) => (
+                      <li key={index}>{song}</li>
+                    )) : null
+                }
+              </SongList>
+            </Details>
+            <InfoBar>
+              {<li>Epiosdes: <span className='info-span'>{anime.episodes}</span></li>}
+              {<li>Duration: <span className='info-span'>{anime.duration}</span></li>}
+              {<li><a href={anime.trailer_url} target="_blank">View Trailer</a></li>}
+            </InfoBar>
+            <Synopsis>
+              {anime.synopsis}
+            </Synopsis>
+          </AnimeDetailsContainer>
+        </AnimeDetailsWrapper>
+      }
     </>
   )
-
 }
 
 export default AnimeDetails
 
 const AnimeDetailsWrapper = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  align-items: center;
-  max-width: 800px;
-  margin: 0 auto;
-  height: 90vh;
+  align-content: center;
+  justify-content: center;
+  height: 100%;
+
+`
+
+const AnimeDetailsContainer = styled.div`
+  display: grid;
+  grid-template-columns: 300px auto;
+  grid-template-rows: min-content;
+  grid-gap: 1rem;
+  align-items: end;
+  max-width: 900px;
+  padding: 3rem;
   color: white;
+  text-align: left;
+
+  @media screen and (max-width: 676px) {
+    grid-template-columns: 1fr;
+  }
 `
 
 const Poster = styled.img`
   width: 300px;
   height: auto;
   object-fit: cover;
+  justify-self: end;
 `
 
 const Title = styled.h2`
+
+  &:first-letter {
+    color: red;
+    font-size: 4.2rem;
+  }
 `
 
 const TitleJpn = styled.h2`
 `
+const Score = styled.p`
+  display: inline;
+  color: black;
+  background: ${props => props.theme.colors.buttonBg};
+  padding: 0.3rem;
+  border-radius: 3px;
+`
+
 const Details = styled.ul`
   list-style: none;
+
+  @media screen and (max-width: 676px) {
+    grid-template-columns: 1fr;
+    grid-row: 2;
+  }
+`
+
+const InfoBar = styled.ul`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex: 1;
+  grid-column: 1 / -1;
+  grid-row: 2;
+
+  li {
+    padding-right: 1rem;
+    font-size: 1.4rem;
+
+    .info-span {
+      font-weight: bold;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    &:last-of-type {
+      color: black;
+      background: ${props => props.theme.colors.buttonBg};
+      padding: .2rem .4rem;
+      border-radius: 3px;
+    }
+  }
+
+  @media screen and (max-width: 676px) {
+    grid-template-columns: 1fr;
+    grid-column: 1;
+  }
+`
+
+const SongList = styled.div`
+  margin-top: 1rem;
+`
+
+const Synopsis = styled.div`
+  grid-column: 1 / -1;
+  grid-row: 3;
+  padding-top: 2rem;
+  font-size: 1.2rem;
+
+  @media screen and (max-width: 676px) {
+    /* grid-template-columns: 1fr; */
+    grid-column: 1;
+    grid-row: 4;
+  }
 `

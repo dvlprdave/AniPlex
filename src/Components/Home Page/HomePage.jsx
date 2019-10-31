@@ -60,7 +60,7 @@ class HomePage extends Component {
         </TopAni>
 
         <TopAni>
-          {topAiring.length > 0 ? <TopAniTitle>Top airing</TopAniTitle> : null}
+          {topAiring.length > 0 ? <TopAniTitle>Top Airing</TopAniTitle> : null}
           {topAiring.map((item, index) => (
             <TopAnime
               key={index}
