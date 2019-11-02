@@ -26,18 +26,20 @@ const AnimeCard = ({ dataItems }) => {
             </Card>
           )
         })}
+      <h1>AnimeCard</h1>
     </AnimeCardWrapper>
   );
 }
 
 const AnimeCardWrapper = styled.div`
-  display: grid;  
+  /* display: grid;  
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   grid-gap: 2rem;
   
   max-width: 1200px;
-  margin: 2rem auto;
-  padding-top: 2rem 2rem;
+  margin: 0 auto;
+  padding-top: 2rem 2rem; */
+  margin: 0 auto;
 `
 
 const Card = styled.article`
@@ -94,4 +96,3 @@ const Rating = styled.p`
 `
 
 export default AnimeCard;
-

@@ -33,6 +33,7 @@ const AnimeDetails = (props) => {
         <AnimeDetailsWrapper>
           <AnimeDetailsContainer>
             <Poster src={anime.image_url} />
+            {/* Details */}
             <Details>
               <Title>{anime.title}</Title>
               <TitleJpn>{anime.title_japanese}</TitleJpn>
@@ -48,11 +49,13 @@ const AnimeDetails = (props) => {
                 }
               </SongList>
             </Details>
+            {/* Info Bar */}
             <InfoBar>
               {<li>Epiosdes: <span className='info-span'>{anime.episodes}</span></li>}
               {<li>Duration: <span className='info-span'>{anime.duration}</span></li>}
-              {<li><a href={anime.trailer_url} target="_blank">View Trailer</a></li>}
+              {<li><a href={anime.trailer_url} rel='external noopener noreferrer' target="_blank">View Trailer</a></li>}
             </InfoBar>
+            {/* Synopsis */}
             <Synopsis>
               {anime.synopsis}
             </Synopsis>
@@ -70,6 +73,10 @@ const AnimeDetailsWrapper = styled.div`
   align-content: center;
   justify-content: center;
   height: 100%;
+
+  @media screen and (max-width: 561px) {
+    margin-top: 3rem;
+  }
 
 `
 
@@ -94,6 +101,10 @@ const Poster = styled.img`
   height: auto;
   object-fit: cover;
   justify-self: end;
+
+  @media screen and (max-width: 676px) {
+    justify-self: center;
+  }
 `
 
 const Title = styled.h2`
@@ -102,9 +113,20 @@ const Title = styled.h2`
     color: red;
     font-size: 4.2rem;
   }
+
+  @media screen and (max-width: 676px) {
+    font-size: 1.4rem;
+
+    &:first-letter {
+    font-size: 4rem;
+  }
+  }
 `
 
 const TitleJpn = styled.h2`
+  @media screen and (max-width: 676px) {
+    font-size: 1.4rem;
+  }
 `
 const Score = styled.p`
   display: inline;
@@ -119,15 +141,18 @@ const Details = styled.ul`
 
   @media screen and (max-width: 676px) {
     grid-template-columns: 1fr;
+    grid-column: 1;
     grid-row: 2;
+    margin-bottom: 0;
   }
 `
 
 const InfoBar = styled.ul`
   display: flex;
+  flex: 1;
+  flex-wrap: wrap;
   justify-content: flex-start;
   align-items: center;
-  flex: 1;
   grid-column: 1 / -1;
   grid-row: 2;
 
@@ -155,6 +180,16 @@ const InfoBar = styled.ul`
   @media screen and (max-width: 676px) {
     grid-template-columns: 1fr;
     grid-column: 1;
+    grid-row: 3;
+
+    li {
+      font-size: 1.2rem;
+
+      &:last-of-type {
+        margin-top: 10px;
+      }
+    }
+
   }
 `
 
@@ -172,5 +207,7 @@ const Synopsis = styled.div`
     /* grid-template-columns: 1fr; */
     grid-column: 1;
     grid-row: 4;
+    font-size: 1rem;
+    padding-top: 0;
   }
 `

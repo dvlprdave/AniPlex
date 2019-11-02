@@ -2,11 +2,6 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 class Form extends Component {
 
-  filterUpdate = () => {
-    const val = this.myValue.value
-    console.log(val)
-  }
-
   render() {
     return (
       <FormWrapper onSubmit={this.props.handleButtonSearch}>

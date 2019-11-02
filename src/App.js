@@ -6,8 +6,8 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 import Header from './Components/Header';
 import HomePage from './Components/Home Page/HomePage';
-import RoutePage from './Components/RoutePage'
 import AnimeDetails from './Components/AnimeDetails';
+import AnimeCard from './Components/AnimeCard/AnimeCard'
 
 
 class App extends Component {
@@ -19,8 +19,8 @@ class App extends Component {
             <Header />
             <Switch>
               <Route path='/' exact component={HomePage} />
-              <Route path='/route page' component={RoutePage} />
-              <Route path='/:animeId' exact component={AnimeDetails} />
+              <Route path='/dashboard' exact component={AnimeCard} />
+              <Route path='/:animeId' component={AnimeDetails} />
             </Switch>
           </AppWrapper>
         </ThemeProvider>
@@ -30,11 +30,8 @@ class App extends Component {
 }
 
 const AppWrapper = styled.div`
-  /* background-color: #000000; */
-  /* background-image: linear-gradient(147deg, #000000 0%, #04619f 74%); */
-  /* height: 100vh; */
   text-align: center;
-  /* font-size: calc(10px + 1vmin); */
+  font-size: calc(10px + 1vmin);
   color: white;
         `
 
