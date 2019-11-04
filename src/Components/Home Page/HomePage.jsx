@@ -1,91 +1,52 @@
-import React, { Component } from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
+
 import { TopAnime } from './TopAnime';
-class HomePage extends Component {
-  state = {
-    topTv: [],
-    topAiring: [],
-    topUpcoming: [],
-  }
+import { AnimeContext } from '../../store/AnimeContext'
 
+const HomePage = () => {
+  const { topTv, topAiring, topUpcoming } = useContext(AnimeContext)
 
-  async getData() {
-    const api = "https://api.jikan.moe/v3";
-    const urls = [
-      `${api}/top/anime/1/tv`,
-      `${api}/top/anime/1/airing`,
-      `${api}/top/anime/1/upcoming`,
-    ];
+  return (
+    <HomeWrapper>
+      <h1>AniPlex</h1>
+      <TopAni>
+        {topTv.length > 0 ? <TopAniTitle>Top TV</TopAniTitle> : null}
+        {topTv.map((item, index) => (
+          <TopAnime
+            key={index}
+            image={item.image_url}
+            title={item.title}
+            item={item}
+          />
+        ))}
+      </TopAni>
 
-    return Promise.all(
-      urls.map(async url => {
-        return await fetch(url); // fetch data from urls
-      })
-    )
-      .then((responses) => Promise.all(responses.map(resp => resp.json())) // turn data into JSON
-        .then(data => {
-          const topTvFiltered = data[0].top.filter(item => item.rank <= 5) // filter out top 6 
-          const topAiringFiltered = data[1].top.filter(item => item.rank <= 5)
-          const topUpcomingFiltered = data[2].top.filter(item => item.rank <= 5)
+      <TopAni>
+        {topAiring.length > 0 ? <TopAniTitle>Top Airing</TopAniTitle> : null}
+        {topAiring.map((item, index) => (
+          <TopAnime
+            key={index}
+            image={item.image_url}
+            title={item.title}
+            item={item}
+          />
+        ))}
+      </TopAni>
 
-          this.setState({
-            topTv: topTvFiltered,
-            topAiring: topAiringFiltered,
-            topUpcoming: topUpcomingFiltered,
-          });
-          console.log(data)
-        })
-      )
-      .catch(err => console.log("There was an error:" + err))
-  }
-
-  componentDidMount() {
-    this.getData();
-  }
-
-  render() {
-    const { topTv, topAiring, topUpcoming } = this.state
-    return (
-      <HomeWrapper>
-        <TopAni>
-          {topTv.length > 0 ? <TopAniTitle>Top TV</TopAniTitle> : null}
-          {topTv.map((item, index) => (
-            <TopAnime
-              key={index}
-              image={item.image_url}
-              title={item.title}
-              item={item}
-            />
-          ))}
-        </TopAni>
-
-        <TopAni>
-          {topAiring.length > 0 ? <TopAniTitle>Top Airing</TopAniTitle> : null}
-          {topAiring.map((item, index) => (
-            <TopAnime
-              key={index}
-              image={item.image_url}
-              title={item.title}
-              item={item}
-            />
-          ))}
-        </TopAni>
-
-        <TopAni>
-          {topUpcoming.length > 0 ? <TopAniTitle>Top Upcoming</TopAniTitle> : null}
-          {topUpcoming.map((item, index) => (
-            <TopAnime
-              key={index}
-              image={item.image_url}
-              title={item.title}
-              item={item}
-            />
-          ))}
-        </TopAni>
-
-      </HomeWrapper>
-    );
-  }
+      <TopAni>
+        {topUpcoming.length > 0 ? <TopAniTitle>Top Upcoming</TopAniTitle> : null}
+        {topUpcoming.map((item, index) => (
+          <TopAnime
+            key={index}
+            image={item.image_url}
+            title={item.title}
+            item={item}
+          />
+        ))}
+      </TopAni>
+    </HomeWrapper>
+  );
 }
 
 const HomeWrapper = styled.div`
