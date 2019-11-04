@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import styled, { ThemeProvider } from 'styled-components';
 import theme from './config/theme';
@@ -11,26 +11,25 @@ import AnimeDetails from './Components/AnimeDetails';
 import AnimeCard from './Components/AnimeCard/AnimeCard'
 
 
-class App extends Component {
-  render() {
-    return (
-      <AnimeProvider>
-        <Router>
-          <ThemeProvider theme={theme}>
-            <AppWrapper>
-              <Header />
-              <Switch>
-                <Route path='/' exact component={HomePage} />
-                <Route path='/dashboard' exact component={AnimeCard} />
-                <Route path='/:animeId' component={AnimeDetails} />
-              </Switch>
-            </AppWrapper>
-          </ThemeProvider>
-        </Router>
-      </AnimeProvider>
-    );
-  }
+const App = () => {
+  return (
+    <AnimeProvider>
+      <Router>
+        <ThemeProvider theme={theme}>
+          <AppWrapper>
+            <Header />
+            <Switch>
+              <Route path='/' exact component={HomePage} />
+              <Route path='/dashboard' exact component={AnimeCard} />
+              <Route path='/:animeId' component={AnimeDetails} />
+            </Switch>
+          </AppWrapper>
+        </ThemeProvider>
+      </Router>
+    </AnimeProvider>
+  );
 }
+
 
 const AppWrapper = styled.div`
   text-align: center;

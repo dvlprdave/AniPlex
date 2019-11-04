@@ -9,7 +9,6 @@ const HomePage = () => {
 
   return (
     <HomeWrapper>
-      <h1>AniPlex</h1>
       <TopAni>
         {topTv.length > 0 ? <TopAniTitle>Top TV</TopAniTitle> : null}
         {topTv.map((item, index) => (

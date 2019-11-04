@@ -104,7 +104,7 @@ const AnimeProvider = (props) => {
       fetchAnimeDetails,
       handleSubmit
     }}>
-      {props.childen}
+      {props.children}
     </AnimeContext.Provider>
   )
 }
