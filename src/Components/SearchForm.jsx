@@ -1,24 +1,37 @@
-import React, { Component } from 'react'
+import React, { useContext } from 'react';
+import { withRouter } from 'react-router-dom'
 import styled from 'styled-components'
-class Form extends Component {
+import AnimeCard from './AnimeCard/AnimeCard';
+import { AnimeContext } from '../store/AnimeContext'
 
-  render() {
-    return (
-      <FormWrapper onSubmit={this.props.handleButtonSearch}>
+
+const SearchForm = () => {
+  const { dataItems, animeSearched, handleSubmit } = useContext(AnimeContext)
+
+  return (
+    <div>
+      <Form onSubmit={handleSubmit}>
         <Input
           type="text"
           name="anime"
           placeholder="Enter title"
-          ref={value => this.myValue = value}
+        // ref={value => myValue = value}
         />
-        <FormButton>Search</FormButton>
-      </FormWrapper>
-    )
-  }
+        <FormButton type='submit'>Search</FormButton>
+      </ Form>
+      {animeSearched
+        ?
+        <AnimeCard
+          dataItems={dataItems}
+        />
+        : null}
+    </div>
+  )
 }
 
-// Form styles
-const FormWrapper = styled.form`
+export default withRouter(SearchForm)
+
+const Form = styled.form`
   display: flex;
   margin-top: 1rem;
 `
@@ -38,5 +51,3 @@ const FormButton = styled.button`
   text-transform: uppercase;
   margin-left: .5rem;
 `
-
-export default Form

@@ -1,14 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom';
-import AnimeSearchForm from './AnimeSearchForm';
+import SearchForm from './SearchForm';
 
 const Header = () => (
   <HeaderBar>
     <Link to='/'>
       <Title>AniPlex</Title>
     </Link>
-    <AnimeSearchForm />
+    <SearchForm />
   </HeaderBar>
 )
 

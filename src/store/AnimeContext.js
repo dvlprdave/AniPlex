@@ -66,25 +66,23 @@ const AnimeProvider = (props) => {
     setAnimeReq({ fetching: false, anime: data }) // set initial state to hold data from our API call
   }
 
+  const { fetching, anime } = animeReq;
 
   // Fetch searched Anime
-  const handleSubmit = async (e) => {
+  async function handleSubmit(e) {
     e.preventDefault()
 
     const animeQuery = e.target.elements.anime.value
     const response = await fetch(`${API}/search/anime?q=${animeQuery}&page=1`)
-    // const response2 = await fetch(`${API}/top/anime/1/movie`)
-
     const animeData = await response.json()
-    // const topAnime = await response2.json()
 
     setDataItems(animeData.results)
     setAnimeSearched(!animeSearched)
 
-    props.history.push('dashboard')
+    // props.history.push('/dashboard')
+    props.history.push('/dashboard')
   }
 
-  const { fetching, anime } = animeReq;
 
   return (
     <AnimeContext.Provider value={{

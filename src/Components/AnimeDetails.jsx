@@ -1,34 +1,41 @@
-import React, { useState, useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import styled from 'styled-components';
 
-const AnimeDetails = (props) => {
-  const API = 'https://api.jikan.moe/v3/anime'
+import { AnimeContext } from '../store/AnimeContext'
 
-  const [animeReq, setAnimeReq] = useState({
-    fetching: false,
-    anime: []
-  })
+const AnimeDetails = () => {
+  // const API = 'https://api.jikan.moe/v3/anime'
+
+  // const [animeReq, setAnimeReq] = useState({
+  //   fetching: false,
+  //   anime: []
+  // })
+
+  const { fetching, anime, fetchAnimeDetails } = useContext(AnimeContext)
 
   useEffect(() => {
-    const getAnime = async () => {
-      setAnimeReq({ fetching: true })
+    fetchAnimeDetails()
+  })
 
-      const response = await fetch(`${API}/${props.match.params.animeId}`)
-      const data = await response.json()
+  // useEffect(() => {
+  //   const getAnime = async () => {
+  //     setAnimeReq({ fetching: true })
 
-      console.log(data);
-      setAnimeReq({ fetching: false, anime: data }) // set initial state to hold data from our API call
-    }
+  //     const response = await fetch(`${API}/${props.match.params.animeId}`)
+  //     const data = await response.json()
 
-    getAnime()
-  }, []) // [] prevents useEffect from running in an infinite loop
+  //     console.log(data);
+  //     setAnimeReq({ fetching: false, anime: data }) // set initial state to hold data from our API call
+  //   }
 
-  const { fetching, anime } = animeReq;
+  //   getAnime()
+  // }, []) // [] prevents useEffect from running in an infinite loop
+
+  // const { fetching, anime } = animeReq;
 
   return (
     <>
       {fetching && 'Fetching...'}
-      {/* loading inicator TODO: add gif or style text */}
       {anime &&
         <AnimeDetailsWrapper>
           <AnimeDetailsContainer>

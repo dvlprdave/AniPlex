@@ -14,7 +14,7 @@ import AnimeCard from './Components/AnimeCard/AnimeCard'
 const App = () => {
   return (
     <AnimeProvider>
-      <Router>
+      <Router >
         <ThemeProvider theme={theme}>
           <AppWrapper>
             <Header />
