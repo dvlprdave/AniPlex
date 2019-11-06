@@ -13,9 +13,9 @@ const AnimeDetails = () => {
 
   const { fetching, anime, fetchAnimeDetails } = useContext(AnimeContext)
 
-  useEffect(() => {
-    fetchAnimeDetails()
-  })
+  // useEffect(() => {
+  //   fetchAnimeDetails()
+  // })
 
   // useEffect(() => {
   //   const getAnime = async () => {

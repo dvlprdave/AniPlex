@@ -1,4 +1,5 @@
 import React, { useState, useEffect, createContext } from 'react'
+import { withRouter } from 'react-router-dom'
 
 const AnimeContext = createContext()
 
@@ -26,6 +27,7 @@ const AnimeProvider = (props) => {
   // State for Anime search form
   const [dataItems, setDataItems] = useState([])
   const [animeSearched, setAnimeSearched] = useState(false)
+  const [toAnimeSearched, setToAnimeSearched] = useState(false)
 
 
   // Fetch top Anime 
@@ -78,9 +80,10 @@ const AnimeProvider = (props) => {
 
     setDataItems(animeData.results)
     setAnimeSearched(!animeSearched)
+    setToAnimeSearched(false)
 
-    // props.history.push('/dashboard')
     props.history.push('/dashboard')
+
   }
 
 
@@ -100,11 +103,14 @@ const AnimeProvider = (props) => {
       anime,
       fetchTopAnime,
       fetchAnimeDetails,
-      handleSubmit
+      handleSubmit,
+      toAnimeSearched
     }}>
       {props.children}
     </AnimeContext.Provider>
   )
 }
 
-export { AnimeProvider, AnimeContext }
+const RouterAnimeProvider = withRouter(AnimeProvider)
+
+export { RouterAnimeProvider, AnimeContext }

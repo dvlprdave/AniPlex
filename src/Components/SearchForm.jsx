@@ -1,15 +1,15 @@
 import React, { useContext } from 'react';
-import { withRouter } from 'react-router-dom'
 import styled from 'styled-components'
 import AnimeCard from './AnimeCard/AnimeCard';
 import { AnimeContext } from '../store/AnimeContext'
 
 
 const SearchForm = () => {
-  const { dataItems, animeSearched, handleSubmit } = useContext(AnimeContext)
+  const { dataItems, animeSearched, handleSubmit, toAnimeSearched } = useContext(AnimeContext)
 
   return (
     <div>
+      {/* {toAnimeSearched ? <Redirect to='/dashboard' /> : null} */}
       <Form onSubmit={handleSubmit}>
         <Input
           type="text"
@@ -21,15 +21,13 @@ const SearchForm = () => {
       </ Form>
       {animeSearched
         ?
-        <AnimeCard
-          dataItems={dataItems}
-        />
+        <AnimeCard />
         : null}
     </div>
   )
 }
 
-export default withRouter(SearchForm)
+export default SearchForm
 
 const Form = styled.form`
   display: flex;

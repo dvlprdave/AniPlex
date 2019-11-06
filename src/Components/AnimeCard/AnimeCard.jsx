@@ -2,10 +2,13 @@
 /*           Titles that get displayed when doing a specific search           */
 /* -------------------------------------------------------------------------- */
 
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components'
+import { AnimeContext } from '../../store/AnimeContext'
 
-const AnimeCard = ({ dataItems }) => {
+const AnimeCard = () => {
+  const { dataItems } = useContext(AnimeContext)
+
   return (
     <AnimeCardWrapper>
       {dataItems
