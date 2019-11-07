@@ -21,14 +21,13 @@ const AnimeProvider = (props) => {
   // State for Anime details
   const [animeReq, setAnimeReq] = useState({
     fetching: false,
-    anime: []
+    anime: [],
   })
 
   // State for Anime search form
   const [dataItems, setDataItems] = useState([])
   const [animeSearched, setAnimeSearched] = useState(false)
   const [toAnimeSearched, setToAnimeSearched] = useState(false)
-
 
   // Fetch top Anime 
   const fetchTopAnime = async () => {
@@ -83,9 +82,7 @@ const AnimeProvider = (props) => {
     setToAnimeSearched(false)
 
     props.history.push('/dashboard')
-
   }
-
 
   return (
     <AnimeContext.Provider value={{
@@ -104,7 +101,7 @@ const AnimeProvider = (props) => {
       fetchTopAnime,
       fetchAnimeDetails,
       handleSubmit,
-      toAnimeSearched
+      toAnimeSearched,
     }}>
       {props.children}
     </AnimeContext.Provider>

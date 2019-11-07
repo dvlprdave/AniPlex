@@ -4,6 +4,8 @@
 
 import React, { useContext } from 'react';
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
+
 import { AnimeContext } from '../../store/AnimeContext'
 
 const AnimeCard = () => {
@@ -16,86 +18,48 @@ const AnimeCard = () => {
         .map(item => {
           return (
             <Card key={item.mal_id}>
-              <Poster>
+              <Link to={`/${item.mal_id}`}>
                 <PosterImg src={item.image_url} alt="poster" />
-              </Poster>
+              </Link>
 
               <Title>{item.title}</Title>
-
-              <Info>
-                <Score>{item.score}</Score>
-                <Rating>{item.rated}</Rating>
-              </Info>
             </Card>
           )
         })}
-      <h1>AnimeCard</h1>
     </AnimeCardWrapper>
   );
 }
 
 const AnimeCardWrapper = styled.div`
-  /* display: grid;  
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  grid-gap: 2rem;
+  display: grid;  
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-rows: auto;
+  grid-gap: 1rem;
   
   max-width: 1200px;
   margin: 0 auto;
-  padding-top: 2rem 2rem; */
-  margin: 0 auto;
+  padding: 6rem 4.5rem;
 `
 
 const Card = styled.article`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
   width: 100%;
   margin: 0;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-`
-
-const Poster = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  background-size: cover;
-  background-position: center;
-  width: 100%;
 `
 
 const PosterImg = styled.img`
+  object-fit: cover;
+  background-size: cover;
+  background-position: center;
+  border-radius: 3px;
   width: 100%;
   height: 350px;
-  object-fit: cover;
-  border-radius: 1rem;
 `
 
 const Title = styled.h5`
-  padding: .5rem;
-`
-
-const Info = styled.div`
-  display: flex;
-
-  &:hover {
-    background-color: transparent;
-    color: green;
-  }
-`
-
-const Score = styled.p`
-  border: 1px solid orange;
-  padding: 10px;
-  width: 2rem;
-  font-size: .9rem;
-  font-weight: bold;
-`
-
-const Rating = styled.p`
-  color: red;
+  text-align: left;
+  justify-self: start;
 `
 
 export default AnimeCard;

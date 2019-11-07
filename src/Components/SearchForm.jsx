@@ -1,28 +1,21 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components'
-import AnimeCard from './AnimeCard/AnimeCard';
 import { AnimeContext } from '../store/AnimeContext'
 
-
 const SearchForm = () => {
-  const { dataItems, animeSearched, handleSubmit, toAnimeSearched } = useContext(AnimeContext)
+  const { handleSubmit } = useContext(AnimeContext)
 
   return (
     <div>
-      {/* {toAnimeSearched ? <Redirect to='/dashboard' /> : null} */}
       <Form onSubmit={handleSubmit}>
         <Input
           type="text"
           name="anime"
           placeholder="Enter title"
-        // ref={value => myValue = value}
+        // ref={value => inputValue = value}
         />
         <FormButton type='submit'>Search</FormButton>
       </ Form>
-      {animeSearched
-        ?
-        <AnimeCard />
-        : null}
     </div>
   )
 }

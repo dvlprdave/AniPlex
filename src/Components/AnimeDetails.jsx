@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components';
 
 import { AnimeContext } from '../store/AnimeContext'
@@ -11,7 +11,7 @@ const AnimeDetails = () => {
   //   anime: []
   // })
 
-  const { fetching, anime, fetchAnimeDetails } = useContext(AnimeContext)
+  const { fetching, anime } = useContext(AnimeContext)
 
   // useEffect(() => {
   //   fetchAnimeDetails()
