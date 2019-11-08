@@ -18,12 +18,6 @@ const AnimeProvider = (props) => {
   const [topAiring, setTopAiring] = useState([])
   const [topUpcoming, setTopUpcoming] = useState([])
 
-  // State for Anime details
-  const [animeReq, setAnimeReq] = useState({
-    fetching: false,
-    anime: [],
-  })
-
   // State for Anime search form
   const [dataItems, setDataItems] = useState([])
   const [animeSearched, setAnimeSearched] = useState(false)
@@ -56,19 +50,6 @@ const AnimeProvider = (props) => {
     fetchTopAnime()
   }, [])
 
-  // Fetch Anime details
-  const fetchAnimeDetails = async () => {
-    setAnimeReq({ fetching: true })
-
-    const response = await fetch(`${API}/${props.match.params.animeId}`)
-    const data = await response.json()
-
-    console.log(data);
-    setAnimeReq({ fetching: false, anime: data }) // set initial state to hold data from our API call
-  }
-
-  const { fetching, anime } = animeReq;
-
   // Fetch searched Anime
   async function handleSubmit(e) {
     e.preventDefault()
@@ -81,7 +62,7 @@ const AnimeProvider = (props) => {
     setAnimeSearched(!animeSearched)
     setToAnimeSearched(false)
 
-    props.history.push('/dashboard')
+    props.history.push('/searched-anime')
   }
 
   return (
@@ -96,10 +77,7 @@ const AnimeProvider = (props) => {
       setDataItems,
       animeSearched,
       setAnimeSearched,
-      fetching,
-      anime,
       fetchTopAnime,
-      fetchAnimeDetails,
       handleSubmit,
       toAnimeSearched,
     }}>

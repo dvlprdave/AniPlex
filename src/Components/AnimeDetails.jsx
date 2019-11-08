@@ -1,37 +1,29 @@
-import React, { useContext } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components';
 
-import { AnimeContext } from '../store/AnimeContext'
+const AnimeDetails = (props) => {
+  const API = 'https://api.jikan.moe/v3/anime'
 
-const AnimeDetails = () => {
-  // const API = 'https://api.jikan.moe/v3/anime'
+  const [animeReq, setAnimeReq] = useState({
+    fetching: false,
+    anime: []
+  })
 
-  // const [animeReq, setAnimeReq] = useState({
-  //   fetching: false,
-  //   anime: []
-  // })
+  useEffect(() => {
+    const getAnime = async () => {
+      setAnimeReq({ fetching: true })
 
-  const { fetching, anime } = useContext(AnimeContext)
+      const response = await fetch(`${API}/${props.match.params.animeId}`)
+      const data = await response.json()
 
-  // useEffect(() => {
-  //   fetchAnimeDetails()
-  // })
+      console.log(data);
+      setAnimeReq({ fetching: false, anime: data }) // set initial state to hold data from our API call
+    }
 
-  // useEffect(() => {
-  //   const getAnime = async () => {
-  //     setAnimeReq({ fetching: true })
+    getAnime()
+  }, []) // [] prevents useEffect from running in an infinite loop
 
-  //     const response = await fetch(`${API}/${props.match.params.animeId}`)
-  //     const data = await response.json()
-
-  //     console.log(data);
-  //     setAnimeReq({ fetching: false, anime: data }) // set initial state to hold data from our API call
-  //   }
-
-  //   getAnime()
-  // }, []) // [] prevents useEffect from running in an infinite loop
-
-  // const { fetching, anime } = animeReq;
+  const { fetching, anime } = animeReq;
 
   return (
     <>
@@ -84,7 +76,6 @@ const AnimeDetailsWrapper = styled.div`
   @media screen and (max-width: 561px) {
     margin-top: 3rem;
   }
-
 `
 
 const AnimeDetailsContainer = styled.div`
@@ -211,7 +202,6 @@ const Synopsis = styled.div`
   font-size: 1.2rem;
 
   @media screen and (max-width: 676px) {
-    /* grid-template-columns: 1fr; */
     grid-column: 1;
     grid-row: 4;
     font-size: 1rem;

@@ -21,7 +21,7 @@ const App = () => {
             <Switch>
               <Route path='/' exact component={HomePage} />
               {/* <Route path='/dashboard' exact render={props => <AnimeCard {...props} />} /> */}
-              <Route path='/dashboard' component={AnimeCard} />
+              <Route path='/searched-anime' component={AnimeCard} />
               <Route path='/:animeId' component={AnimeDetails} />
             </Switch>
           </AppWrapper>

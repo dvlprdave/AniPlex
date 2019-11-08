@@ -12,7 +12,6 @@ const SearchForm = () => {
           type="text"
           name="anime"
           placeholder="Enter title"
-        // ref={value => inputValue = value}
         />
         <FormButton type='submit'>Search</FormButton>
       </ Form>
@@ -41,4 +40,5 @@ const FormButton = styled.button`
   color: ${props => props.theme.colors.white};
   text-transform: uppercase;
   margin-left: .5rem;
+  cursor: pointer;
 `
