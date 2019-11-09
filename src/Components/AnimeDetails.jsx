@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components';
+import SearchIndicator from './SearchIndicator';
 
 const AnimeDetails = (props) => {
   const API = 'https://api.jikan.moe/v3/anime'
@@ -27,7 +28,7 @@ const AnimeDetails = (props) => {
 
   return (
     <>
-      {fetching && 'Fetching...'}
+      {fetching && <SearchIndicator />}
       {anime &&
         <AnimeDetailsWrapper>
           <AnimeDetailsContainer>

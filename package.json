@@ -27,6 +27,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "babel-plugin-styled-components": "^1.10.6"
+    "babel-plugin-styled-components": "^1.10.6",
+    "react-kawaii": "^0.14.4"
   }
 }
