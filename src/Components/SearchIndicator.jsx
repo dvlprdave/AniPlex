@@ -19,6 +19,7 @@ const IndicatorWrapper = styled.div`
   align-items: center;
   justify-content: center;
   margin: 0 auto;
+  height: 80vh;
 
   p { 
     padding-top: 1rem;

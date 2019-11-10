@@ -21,6 +21,7 @@ const AnimeProvider = (props) => {
   // State for Anime search form
   const [dataItems, setDataItems] = useState([])
   const [animeSearched, setAnimeSearched] = useState(false)
+  const [formError, setFormError] = useState('')
 
   // Fetch top Anime 
   const fetchTopAnime = async () => {
@@ -58,13 +59,16 @@ const AnimeProvider = (props) => {
     const response = await fetch(`${API}/search/anime?q=${animeQuery}&page=1`)
     const animeData = await response.json()
 
-    setDataItems(animeData.results)
-    setAnimeSearched(false)
-    // FIXME: 
-    // const reset = e.target
-    // reset.reset()
+    if (animeQuery) {
+      setDataItems(animeData.results)
+      setAnimeSearched(false)
+      setFormError('')
 
-    props.history.push('/searched-anime')
+      props.history.push('/searched-anime')
+    } else {
+      setFormError('Please enter Anime title')
+    }
+
   }
 
   return (
@@ -79,7 +83,8 @@ const AnimeProvider = (props) => {
       setDataItems,
       animeSearched,
       fetchTopAnime,
-      handleSubmit
+      handleSubmit,
+      formError
     }}>
       {props.children}
     </AnimeContext.Provider>

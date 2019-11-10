@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { AnimeContext } from '../store/AnimeContext'
 
 const SearchForm = () => {
-  const { handleSubmit } = useContext(AnimeContext)
+  const { handleSubmit, formError } = useContext(AnimeContext)
 
   return (
     <div>
@@ -12,10 +12,10 @@ const SearchForm = () => {
           type="text"
           name="anime"
           placeholder="Enter title"
-        // value={animeTitle}
         />
         <FormButton type='submit'>Search</FormButton>
       </ Form>
+      <FormError>{formError}</FormError>
     </div>
   )
 }
@@ -24,6 +24,7 @@ export default SearchForm
 
 const Form = styled.form`
   display: flex;
+  position: relative;
   margin-top: 1rem;
 `
 
@@ -42,4 +43,11 @@ const FormButton = styled.button`
   text-transform: uppercase;
   margin-left: .5rem;
   cursor: pointer;
+`
+
+const FormError = styled.p`
+  position: absolute;
+  margin-top: 5px;
+  font-size: 1rem;
+  color: yellow;
 `
