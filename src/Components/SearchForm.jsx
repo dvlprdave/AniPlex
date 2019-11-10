@@ -1,10 +1,9 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components'
 import { AnimeContext } from '../store/AnimeContext'
-import SearchIndicator from './SearchIndicator';
 
 const SearchForm = () => {
-  const { handleSubmit, animeSearched } = useContext(AnimeContext)
+  const { handleSubmit } = useContext(AnimeContext)
 
   return (
     <div>
@@ -13,11 +12,10 @@ const SearchForm = () => {
           type="text"
           name="anime"
           placeholder="Enter title"
+        // value={animeTitle}
         />
         <FormButton type='submit'>Search</FormButton>
       </ Form>
-      {animeSearched && <SearchIndicator />}
-      {/* {animeSearched ? <SearchIndicator /> : 'searching'} */}
     </div>
   )
 }

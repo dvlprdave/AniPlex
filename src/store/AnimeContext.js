@@ -54,12 +54,15 @@ const AnimeProvider = (props) => {
     e.preventDefault()
 
     setAnimeSearched(true)
-    const animeQuery = e.target.elements.anime.value
+    let animeQuery = e.target.elements.anime.value
     const response = await fetch(`${API}/search/anime?q=${animeQuery}&page=1`)
     const animeData = await response.json()
 
     setDataItems(animeData.results)
     setAnimeSearched(false)
+    // FIXME: 
+    // const reset = e.target
+    // reset.reset()
 
     props.history.push('/searched-anime')
   }
@@ -76,7 +79,7 @@ const AnimeProvider = (props) => {
       setDataItems,
       animeSearched,
       fetchTopAnime,
-      handleSubmit,
+      handleSubmit
     }}>
       {props.children}
     </AnimeContext.Provider>
