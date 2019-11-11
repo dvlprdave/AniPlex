@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { AnimeContext } from '../store/AnimeContext'
 
 const SearchForm = () => {
-  const { handleSubmit, formError } = useContext(AnimeContext)
+  const { handleSubmit, handleInputChange, inputField, formError } = useContext(AnimeContext)
 
   return (
     <div>
@@ -12,6 +12,8 @@ const SearchForm = () => {
           type="text"
           name="anime"
           placeholder="Enter title"
+          value={inputField}
+          onChange={handleInputChange}
         />
         <FormButton type='submit'>Search</FormButton>
       </ Form>

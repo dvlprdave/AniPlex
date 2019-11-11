@@ -5,7 +5,6 @@ const AnimeContext = createContext()
 
 const API = "https://api.jikan.moe/v3"
 
-
 const AnimeProvider = (props) => {
   const urls = [
     `${API}/top/anime/1/airing`,
@@ -17,14 +16,18 @@ const AnimeProvider = (props) => {
   const [topTv, setTopTv] = useState([])
   const [topAiring, setTopAiring] = useState([])
   const [topUpcoming, setTopUpcoming] = useState([])
+  const [fetchingTop, setFetchingTop] = useState(false)
 
   // State for Anime search form
   const [dataItems, setDataItems] = useState([])
   const [animeSearched, setAnimeSearched] = useState(false)
   const [formError, setFormError] = useState('')
+  const [inputField, setInputField] = useState('')
+
 
   // Fetch top Anime 
-  const fetchTopAnime = async () => {
+  async function fetchTopAnime() {
+    setFetchingTop(true)
     return Promise.all(
       urls.map(async url => {
         return await fetch(url); // fetch data from urls
@@ -39,8 +42,7 @@ const AnimeProvider = (props) => {
           setTopTv(topTvFiltered)
           setTopAiring(topAiringFiltered)
           setTopUpcoming(topUpcomingFiltered)
-
-          console.log(data)
+          setFetchingTop(false)
         })
       )
       .catch(err => console.log("There was an error:" + err))
@@ -49,6 +51,20 @@ const AnimeProvider = (props) => {
   useEffect(() => {
     fetchTopAnime()
   }, [])
+
+  // Handle changes to input
+  function handleInputChange(e) {
+    setInputField(e.target.value)
+    setFormError('') // Clear validation error on input
+
+    // Input validation for alphanumeric only
+    const regex = /^[a-zA-Z]+$/;
+    if (regex.test(inputField) == false) {
+      setFormError('Please use correct character')
+    } else {
+      setFormError('')
+    }
+  }
 
   // Fetch searched Anime
   async function handleSubmit(e) {
@@ -59,10 +75,12 @@ const AnimeProvider = (props) => {
     const response = await fetch(`${API}/search/anime?q=${animeQuery}&page=1`)
     const animeData = await response.json()
 
+    // Validation for empty input submission
     if (animeQuery) {
       setDataItems(animeData.results)
       setAnimeSearched(false)
       setFormError('')
+      setInputField('')
 
       props.history.push('/searched-anime')
     } else {
@@ -84,7 +102,10 @@ const AnimeProvider = (props) => {
       animeSearched,
       fetchTopAnime,
       handleSubmit,
-      formError
+      handleInputChange,
+      inputField,
+      formError,
+      fetchingTop
     }}>
       {props.children}
     </AnimeContext.Provider>

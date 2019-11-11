@@ -22,7 +22,7 @@ const AnimeDetails = (props) => {
     }
 
     getAnime()
-  }, []) // [] prevents useEffect from running in an infinite loop
+  }, [])
 
   const { fetching, anime } = animeReq;
 
@@ -44,7 +44,7 @@ const AnimeDetails = (props) => {
                 {anime.opening_themes ? // Make sure data is fully loaded before component renders
                   anime.opening_themes
                     .map((song, index) => (
-                      <li key={index}>{song}</li>
+                      <li key={index}><p>- {song}</p></li>
                     )) : null
                 }
               </SongList>
@@ -194,6 +194,8 @@ const InfoBar = styled.ul`
 
 const SongList = styled.div`
   margin-top: 1rem;
+  max-height: 200px;
+  overflow: auto;
 `
 
 const Synopsis = styled.div`
