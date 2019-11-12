@@ -17,10 +17,13 @@ const HeaderBar = styled.div`
   justify-content: space-between;
   align-items: center;
   flex: 1;
+
   height: 10vh;
+  max-width: 1200px;
+  margin: 0 auto;
   padding: 0 3rem;
-  background: inherit;
   color: black;
+  background: inherit;
 
   a {
     /* Remove text decoration from Router Link */
@@ -33,6 +36,7 @@ const HeaderBar = styled.div`
 
 const Title = styled.h1`
   color: ${props => props.theme.colors.white};
+  font-family: ${props => props.theme.fontFamily.cursive};
 `
 
 export default Header

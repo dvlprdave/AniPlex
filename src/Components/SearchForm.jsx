@@ -10,6 +10,7 @@ const SearchForm = () => {
     <div>
       <Form onSubmit={handleSubmit}>
         <Input
+          aria-label="Search"
           type="text"
           name="anime"
           placeholder="Enter title"
@@ -39,7 +40,7 @@ const Input = styled.input`
   border-color: #1e1e1e;
   border-radius: ${props => props.theme.formStyle.borderRadius};
   background-color: ${props => props.theme.colors.darkGrey};
-  color: ${props => props.theme.colors.grey};
+  color: ${props => props.theme.colors.background};
 `
 
 const FormError = styled.p`

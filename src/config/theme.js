@@ -1,9 +1,8 @@
 const colors = {
   white: '#fff',
-  grey: '#534638',
   darkGrey: '#1e1e1e',
-  primary: '#187791', // Color for buttons or links
-  // background: '#9b89b3', // Background color
+  primary: '#187791',
+  firstLetter: '#bf0760', // Anime title first letter 
   background: '#333333', // Background color
   button: '#599bb3', // Button color 
   buttonBg: 'gold',
@@ -22,7 +21,7 @@ const fontSize = {
 const fontFamily = {
   serif: `'Bitter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', serif`,
   sansSerif: `'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif`,
-  cursive: `'Lilita One', cursive`
+  cursive: `'Lilita One', 'Carter One', cursive`
 }
 
 const formStyle = {

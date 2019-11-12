@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components';
+import { MdGrade } from "react-icons/md";
 import LoadingIndicator from './LoadingIndicator';
 
 const AnimeDetails = (props) => {
@@ -37,23 +38,39 @@ const AnimeDetails = (props) => {
             <Details>
               <Title>{anime.title}</Title>
               <TitleJpn>{anime.title_japanese}</TitleJpn>
-              <Score>{anime.score || 'N/A'}</Score>
               {/* If no score then display N/A */}
-              <SongList>
+              {/* <SongList>
                 <h3>Opening Themes</h3>
                 {anime.opening_themes ? // Make sure data is fully loaded before component renders
                   anime.opening_themes
-                    .map((song, index) => (
-                      <li key={index}><p>- {song}</p></li>
+                  .map((song, index) => (
+                    <li key={index}><p>- {song}</p></li>
                     )) : null
-                }
-              </SongList>
+                  }
+                </SongList> */}
+              <IframeContainer>
+                {/* <iframe
+                  src={anime.trailer_url}
+                  frameBorder='0'
+                  allow='encrypted-media'
+                  autoplay='0'
+                  allowFullScreen
+                  title='video'
+                  aria-label="Video"
+                /> */}
+                <video src={anime.trailer_url}
+                  autoPlay='false'
+                ></video>
+              </IframeContainer>
             </Details>
             {/* Info Bar */}
+            <ScoreWrapper>
+              <Star><MdGrade /></Star>
+              <Score>{anime.score || 'N/A'}</Score>
+            </ScoreWrapper>
             <InfoBar>
               {<li>Epiosdes: <span className='info-span'>{anime.episodes}</span></li>}
               {<li>Duration: <span className='info-span'>{anime.duration}</span></li>}
-              {<li><a href={anime.trailer_url} rel='external noopener noreferrer' target="_blank">View Trailer</a></li>}
             </InfoBar>
             {/* Synopsis */}
             <Synopsis>
@@ -109,7 +126,7 @@ const Poster = styled.img`
 const Title = styled.h2`
 
   &:first-letter {
-    color: red;
+    color: ${props => props.theme.colors.firstLetter};
     font-size: 4.2rem;
   }
 
@@ -127,22 +144,63 @@ const TitleJpn = styled.h2`
     font-size: 1.4rem;
   }
 `
+
+const ScoreWrapper = styled.div`
+  
+`
+
+const Star = styled.span`
+  color: yellow;
+  padding-right: 1rem;
+`
+
 const Score = styled.p`
-  display: inline;
-  color: black;
-  background: ${props => props.theme.colors.buttonBg};
+  display: inline-block;
+  grid-column: 1;
+  grid-row: 2;
+  width: 40px;
+  color: ${props => props.theme.colors.white};
+  background: ${props => props.theme.colors.darkGrey};
   padding: 0.3rem;
+  margin: 0;
   border-radius: 3px;
 `
 
 const Details = styled.ul`
   list-style: none;
+  margin: 0;
 
   @media screen and (max-width: 676px) {
     grid-template-columns: 1fr;
     grid-column: 1;
     grid-row: 2;
     margin-bottom: 0;
+  }
+`
+
+const IframeContainer = styled.div`
+  /* position: relative;
+  overflow: hidden;
+  padding-top: 46.25%;
+  
+
+  iframe {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+  }
+
+  @media screen and (max-width: 810px) {
+    iframe {
+      width: 350px;
+    }
+  } */
+
+  video {
+    width: 100%;
+    height: 100%;
   }
 `
 
@@ -153,7 +211,7 @@ const InfoBar = styled.ul`
   justify-content: flex-start;
   align-items: center;
   grid-column: 1 / -1;
-  grid-row: 2;
+  /* grid-row: 2; */
 
   li {
     padding-right: 1rem;
@@ -166,13 +224,6 @@ const InfoBar = styled.ul`
     a {
       text-decoration: none;
       color: inherit;
-    }
-
-    &:last-of-type {
-      color: black;
-      background: ${props => props.theme.colors.buttonBg};
-      padding: .2rem .4rem;
-      border-radius: 3px;
     }
   }
 
@@ -200,8 +251,8 @@ const SongList = styled.div`
 
 const Synopsis = styled.div`
   grid-column: 1 / -1;
-  grid-row: 3;
-  padding-top: 2rem;
+  grid-row: 4;
+  /* padding-top: 2rem; */
   font-size: 1.2rem;
 
   @media screen and (max-width: 676px) {

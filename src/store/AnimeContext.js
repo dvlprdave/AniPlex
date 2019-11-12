@@ -9,13 +9,13 @@ const AnimeProvider = (props) => {
   const urls = [
     `${API}/top/anime/1/airing`,
     `${API}/top/anime/1/tv`,
-    `${API}/top/anime/1/upcoming`,
+    `${API}/top/anime/1/movie`,
   ]
 
   // State for top Anime 
   const [topTv, setTopTv] = useState([])
   const [topAiring, setTopAiring] = useState([])
-  const [topUpcoming, setTopUpcoming] = useState([])
+  const [topMovie, setTopMovie] = useState([])
   const [fetchingTop, setFetchingTop] = useState(false)
 
   // State for Anime search form
@@ -37,11 +37,11 @@ const AnimeProvider = (props) => {
         .then(data => {
           const topTvFiltered = data[0].top.filter(item => item.rank <= 5) // filter out top 6 
           const topAiringFiltered = data[1].top.filter(item => item.rank <= 5)
-          const topUpcomingFiltered = data[2].top.filter(item => item.rank <= 5)
+          const topMovieFiltered = data[2].top.filter(item => item.rank <= 5)
 
           setTopTv(topTvFiltered)
           setTopAiring(topAiringFiltered)
-          setTopUpcoming(topUpcomingFiltered)
+          setTopMovie(topMovieFiltered)
           setFetchingTop(false)
         })
       )
@@ -94,8 +94,8 @@ const AnimeProvider = (props) => {
       setTopTv,
       topAiring,
       setTopAiring,
-      topUpcoming,
-      setTopUpcoming,
+      topMovie,
+      setTopMovie,
       dataItems,
       setDataItems,
       animeSearched,

@@ -6,7 +6,7 @@ import { AnimeContext } from '../store/AnimeContext'
 import LoadingIndicator from './LoadingIndicator';
 
 const HomePage = () => {
-  const { topTv, topAiring, topUpcoming, fetchingTop } = useContext(AnimeContext)
+  const { topTv, topAiring, topMovie, fetchingTop } = useContext(AnimeContext)
 
   return (
     <HomeWrapper>
@@ -36,8 +36,8 @@ const HomePage = () => {
       </TopAni>
 
       <TopAni>
-        {topUpcoming.length > 0 ? <TopAniTitle>Top Upcoming</TopAniTitle> : null}
-        {topUpcoming.map((item, index) => (
+        {topMovie.length > 0 ? <TopAniTitle>Top Movie</TopAniTitle> : null}
+        {topMovie.map((item, index) => (
           <TopAnime
             key={index}
             image={item.image_url}
