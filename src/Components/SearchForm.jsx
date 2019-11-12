@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components'
+import { FaSearch } from "react-icons/fa";
 import { AnimeContext } from '../store/AnimeContext'
 
 const SearchForm = () => {
@@ -15,7 +16,9 @@ const SearchForm = () => {
           value={inputField}
           onChange={handleInputChange}
         />
-        <FormButton type='submit'>Search</FormButton>
+        <Icon>
+          <FaSearch />
+        </Icon>
       </ Form>
       <FormError>{formError}</FormError>
     </div>
@@ -33,18 +36,10 @@ const Form = styled.form`
 const Input = styled.input`
   font-size: 1.2rem;
   padding: .3em;
+  border-color: #1e1e1e;
   border-radius: ${props => props.theme.formStyle.borderRadius};
-`
-
-const FormButton = styled.button`
-  border: ${props => props.theme.buttonStyle.border};
-  border-radius: ${props => props.theme.formStyle.borderRadius};
-  background: ${props => props.theme.colors.inputBackground};
-  padding: .8rem 1.8rem;
-  color: ${props => props.theme.colors.white};
-  text-transform: uppercase;
-  margin-left: .5rem;
-  cursor: pointer;
+  background-color: ${props => props.theme.colors.darkGrey};
+  color: ${props => props.theme.colors.grey};
 `
 
 const FormError = styled.p`
@@ -52,4 +47,11 @@ const FormError = styled.p`
   margin-top: 5px;
   font-size: 1rem;
   color: yellow;
+`
+
+const Icon = styled.span`
+  position: absolute;
+  right: 1rem;
+  top: .5rem;
+  color: grey;
 `

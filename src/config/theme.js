@@ -1,7 +1,10 @@
 const colors = {
   white: '#fff',
+  grey: '#534638',
+  darkGrey: '#1e1e1e',
   primary: '#187791', // Color for buttons or links
-  background: '#9b89b3', // Background color
+  // background: '#9b89b3', // Background color
+  background: '#333333', // Background color
   button: '#599bb3', // Button color 
   buttonBg: 'gold',
   inputBackground: 'rgba(57, 63, 84, 0.8)', // Input background color
