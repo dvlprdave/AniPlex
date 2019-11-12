@@ -2,15 +2,15 @@ import React, { useContext } from 'react'
 import styled from 'styled-components'
 
 import { TopAnime } from './TopAnime';
-import { AnimeContext } from '../../store/AnimeContext'
-import SearchIndicator from '../SearchIndicator';
+import { AnimeContext } from '../store/AnimeContext'
+import LoadingIndicator from './LoadingIndicator';
 
 const HomePage = () => {
   const { topTv, topAiring, topUpcoming, fetchingTop } = useContext(AnimeContext)
 
   return (
     <HomeWrapper>
-      {fetchingTop && <SearchIndicator />}
+      {fetchingTop && <LoadingIndicator />}
       <TopAni>
         {topTv.length > 0 ? <TopAniTitle>Top TV</TopAniTitle> : null}
         {topTv.map((item, index) => (

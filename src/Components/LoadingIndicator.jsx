@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components'
 import { Cat } from 'react-kawaii'
 
-const SearchIndicator = () => {
+const LoadingIndicator = () => {
   return (
     <IndicatorWrapper>
       <Cat size={320} mood="happy" color="#596881" />
@@ -11,7 +11,7 @@ const SearchIndicator = () => {
   )
 }
 
-export default SearchIndicator
+export default LoadingIndicator
 
 const IndicatorWrapper = styled.div`
   display: flex;

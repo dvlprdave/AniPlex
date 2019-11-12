@@ -6,15 +6,15 @@ import React, { useContext } from 'react';
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
-import { AnimeContext } from '../../store/AnimeContext'
-import SearchIndicator from '../SearchIndicator';
+import { AnimeContext } from '../store/AnimeContext'
+import LoadingIndicator from './LoadingIndicator';
 
 const AnimeCard = () => {
   const { dataItems, animeSearched } = useContext(AnimeContext)
 
   return (
     <>
-      {animeSearched && <SearchIndicator />}
+      {animeSearched && <LoadingIndicator />}
       <AnimeCardWrapper>
         {dataItems
           .filter(item => item.rated !== 'Rx' && item.score !== 0 && item.type === 'TV') // filter out adult content
@@ -36,9 +36,11 @@ const AnimeCard = () => {
 
 const AnimeCardWrapper = styled.div`
   display: grid;  
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   grid-template-rows: auto;
   grid-gap: 1rem;
+
+
   
   max-width: 1200px;
   margin: 0 auto;
@@ -49,7 +51,6 @@ const Card = styled.article`
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin: 0;
 `
 
 const PosterImg = styled.img`

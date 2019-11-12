@@ -6,9 +6,9 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { RouterAnimeProvider } from './store/AnimeContext'
 
 import Header from './Components/Header';
-import HomePage from './Components/Home Page/HomePage';
+import HomePage from './Components/HomePage';
 import AnimeDetails from './Components/AnimeDetails';
-import AnimeCard from './Components/AnimeCard/AnimeCard'
+import AnimeCard from './Components/AnimeCard'
 
 
 const App = () => {

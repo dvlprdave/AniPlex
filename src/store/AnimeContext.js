@@ -55,11 +55,10 @@ const AnimeProvider = (props) => {
   // Handle changes to input
   function handleInputChange(e) {
     setInputField(e.target.value)
-    setFormError('') // Clear validation error on input
 
     // Input validation for alphanumeric only
-    const regex = /^[a-zA-Z]+$/;
-    if (regex.test(inputField) == false) {
+    const regex = /[a-zA-Z\s]/
+    if (regex.test(inputField) === false) {
       setFormError('Please use correct character')
     } else {
       setFormError('')
