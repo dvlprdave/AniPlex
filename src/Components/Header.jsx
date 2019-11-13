@@ -37,6 +37,11 @@ const HeaderBar = styled.div`
 const Title = styled.h1`
   color: ${props => props.theme.colors.white};
   font-family: ${props => props.theme.fontFamily.cursive};
+
+  @media screen and (max-width: 560px) {
+    font-size: 3rem;
+    margin-bottom: 0;
+  }
 `
 
 export default Header

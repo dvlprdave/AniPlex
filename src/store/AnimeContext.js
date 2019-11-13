@@ -9,7 +9,7 @@ const AnimeProvider = (props) => {
   const urls = [
     `${API}/top/anime/1/airing`,
     `${API}/top/anime/1/tv`,
-    `${API}/top/anime/1/movie`,
+    `${API}/top/anime/1/movie`
   ]
 
   // State for top Anime 
@@ -25,7 +25,7 @@ const AnimeProvider = (props) => {
   const [inputField, setInputField] = useState('')
 
 
-  // Fetch top Anime 
+  // Fetch top Anime / HomePage component
   async function fetchTopAnime() {
     setFetchingTop(true)
     return Promise.all(
@@ -85,7 +85,6 @@ const AnimeProvider = (props) => {
     } else {
       setFormError('Please enter Anime title')
     }
-
   }
 
   return (

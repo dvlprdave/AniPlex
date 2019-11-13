@@ -34,46 +34,44 @@ const AnimeDetails = (props) => {
         <AnimeDetailsWrapper>
           <AnimeDetailsContainer>
             <Poster src={anime.image_url} />
-            {/* Details */}
             <Details>
               <Title>{anime.title}</Title>
               <TitleJpn>{anime.title_japanese}</TitleJpn>
-              {/* If no score then display N/A */}
-              {/* <SongList>
-                <h3>Opening Themes</h3>
-                {anime.opening_themes ? // Make sure data is fully loaded before component renders
-                  anime.opening_themes
-                  .map((song, index) => (
-                    <li key={index}><p>- {song}</p></li>
-                    )) : null
-                  }
-                </SongList> */}
+
               <IframeContainer>
-                {/* <iframe
-                  src={anime.trailer_url}
+                <iframe
+                  src={`${anime.trailer_url}/?autoplay=false`}
                   frameBorder='0'
                   allow='encrypted-media'
-                  autoplay='0'
                   allowFullScreen
                   title='video'
                   aria-label="Video"
-                /> */}
-                <video src={anime.trailer_url}
-                  autoPlay='false'
-                ></video>
+                />
               </IframeContainer>
             </Details>
-            {/* Info Bar */}
+
             <ScoreWrapper>
               <Star><MdGrade /></Star>
               <Score>{anime.score || 'N/A'}</Score>
             </ScoreWrapper>
+
             <InfoBar>
               {<li>Epiosdes: <span className='info-span'>{anime.episodes}</span></li>}
               {<li>Duration: <span className='info-span'>{anime.duration}</span></li>}
             </InfoBar>
-            {/* Synopsis */}
+
+            <SongList>
+              <h3>Opening Themes</h3>
+              {anime.opening_themes ? // Make sure data is fully loaded before component renders
+                anime.opening_themes
+                  .map((song, index) => (
+                    <li key={index}><p>- {song}</p></li>
+                  )) : null
+              }
+            </SongList>
+
             <Synopsis>
+              <h3>Summary</h3>
               {anime.synopsis}
             </Synopsis>
           </AnimeDetailsContainer>
@@ -92,7 +90,7 @@ const AnimeDetailsWrapper = styled.div`
   height: 100%;
 
   @media screen and (max-width: 561px) {
-    margin-top: 3rem;
+    margin-top: 5rem;
   }
 `
 
@@ -151,7 +149,7 @@ const ScoreWrapper = styled.div`
 
 const Star = styled.span`
   color: yellow;
-  padding-right: 1rem;
+  padding-right: .5rem;
 `
 
 const Score = styled.p`
@@ -159,10 +157,11 @@ const Score = styled.p`
   grid-column: 1;
   grid-row: 2;
   width: 40px;
-  color: ${props => props.theme.colors.white};
-  background: ${props => props.theme.colors.darkGrey};
   padding: 0.3rem;
   margin: 0;
+  text-align: center;
+  color: ${props => props.theme.colors.white};
+  background: ${props => props.theme.colors.darkGrey};
   border-radius: 3px;
 `
 
@@ -172,14 +171,12 @@ const Details = styled.ul`
 
   @media screen and (max-width: 676px) {
     grid-template-columns: 1fr;
-    grid-column: 1;
-    grid-row: 2;
     margin-bottom: 0;
   }
 `
 
 const IframeContainer = styled.div`
-  /* position: relative;
+  position: relative;
   overflow: hidden;
   padding-top: 46.25%;
   
@@ -196,11 +193,6 @@ const IframeContainer = styled.div`
     iframe {
       width: 350px;
     }
-  } */
-
-  video {
-    width: 100%;
-    height: 100%;
   }
 `
 
@@ -211,7 +203,6 @@ const InfoBar = styled.ul`
   justify-content: flex-start;
   align-items: center;
   grid-column: 1 / -1;
-  /* grid-row: 2; */
 
   li {
     padding-right: 1rem;
@@ -229,17 +220,11 @@ const InfoBar = styled.ul`
 
   @media screen and (max-width: 676px) {
     grid-template-columns: 1fr;
-    grid-column: 1;
-    grid-row: 3;
+    grid-row: 4;
 
     li {
       font-size: 1.2rem;
-
-      &:last-of-type {
-        margin-top: 10px;
-      }
     }
-
   }
 `
 
@@ -247,17 +232,25 @@ const SongList = styled.div`
   margin-top: 1rem;
   max-height: 200px;
   overflow: auto;
+  grid-row: 4;
+  grid-column: 1 / -1;
+  margin: 0;
+
+  h3 {
+    margin-top: 0;
+  }
+
+  @media screen and (max-width: 676px) {
+    grid-row: 6;
+  }
 `
 
 const Synopsis = styled.div`
   grid-column: 1 / -1;
-  grid-row: 4;
-  /* padding-top: 2rem; */
+  grid-row: 5;
   font-size: 1.2rem;
 
   @media screen and (max-width: 676px) {
-    grid-column: 1;
-    grid-row: 4;
     font-size: 1rem;
     padding-top: 0;
   }
