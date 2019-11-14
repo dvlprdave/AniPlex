@@ -6,47 +6,50 @@ import { AnimeContext } from '../store/AnimeContext'
 import LoadingIndicator from './LoadingIndicator';
 
 const HomePage = () => {
-  const { topTv, topAiring, topMovie, fetchingTop } = useContext(AnimeContext)
+  const { topTv, topAiring, topMovie, fetchingTop, animeSearched } = useContext(AnimeContext)
 
   return (
-    <HomeWrapper>
+    <>
       {fetchingTop && <LoadingIndicator />}
-      <TopAni>
-        {topTv.length > 0 ? <TopAniTitle>Top TV</TopAniTitle> : null}
-        {topTv.map((item, index) => (
-          <TopAnime
-            key={index}
-            image={item.image_url}
-            title={item.title}
-            item={item}
-          />
-        ))}
-      </TopAni>
+      {animeSearched ? <LoadingIndicator /> :
+        <HomeWrapper>
+          <TopAni>
+            {topTv.length > 0 ? <TopAniTitle>Top TV</TopAniTitle> : null}
+            {topTv.map((item, index) => (
+              <TopAnime
+                key={index}
+                image={item.image_url}
+                title={item.title}
+                item={item}
+              />
+            ))}
+          </TopAni>
 
-      <TopAni>
-        {topAiring.length > 0 ? <TopAniTitle>Top Airing</TopAniTitle> : null}
-        {topAiring.map((item, index) => (
-          <TopAnime
-            key={index}
-            image={item.image_url}
-            title={item.title}
-            item={item}
-          />
-        ))}
-      </TopAni>
+          <TopAni>
+            {topAiring.length > 0 ? <TopAniTitle>Top Airing</TopAniTitle> : null}
+            {topAiring.map((item, index) => (
+              <TopAnime
+                key={index}
+                image={item.image_url}
+                title={item.title}
+                item={item}
+              />
+            ))}
+          </TopAni>
 
-      <TopAni>
-        {topMovie.length > 0 ? <TopAniTitle>Top Movie</TopAniTitle> : null}
-        {topMovie.map((item, index) => (
-          <TopAnime
-            key={index}
-            image={item.image_url}
-            title={item.title}
-            item={item}
-          />
-        ))}
-      </TopAni>
-    </HomeWrapper>
+          <TopAni>
+            {topMovie.length > 0 ? <TopAniTitle>Top Movie</TopAniTitle> : null}
+            {topMovie.map((item, index) => (
+              <TopAnime
+                key={index}
+                image={item.image_url}
+                title={item.title}
+                item={item}
+              />
+            ))}
+          </TopAni>
+        </HomeWrapper>}
+    </>
   );
 }
 

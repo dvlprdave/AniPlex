@@ -14,22 +14,22 @@ const AnimeCard = () => {
 
   return (
     <>
-      {animeSearched && <LoadingIndicator />}
-      <AnimeCardWrapper>
-        {dataItems
-          .filter(item => item.rated !== 'Rx' && item.score !== 0 && item.type === 'TV') // filter out adult content
-          .map(item => {
-            return (
-              <Card key={item.mal_id}>
-                <Link to={`/${item.mal_id}`}>
-                  <PosterImg src={item.image_url} alt="poster" />
-                </Link>
+      {animeSearched ? <LoadingIndicator /> :
+        <AnimeCardWrapper>
+          {dataItems
+            .filter(item => item.rated !== 'Rx' && item.score !== 0 && item.type === 'TV') // filter out adult content
+            .map(item => {
+              return (
+                <Card key={item.mal_id}>
+                  <Link to={`/${item.mal_id}`}>
+                    <PosterImg src={item.image_url} alt="poster" />
+                  </Link>
 
-                <Title>{item.title}</Title>
-              </Card>
-            )
-          })}
-      </AnimeCardWrapper>
+                  <Title>{item.title}</Title>
+                </Card>
+              )
+            })}
+        </AnimeCardWrapper>}
     </>
   );
 }

@@ -70,14 +70,16 @@ const AnimeProvider = (props) => {
     e.preventDefault()
 
     setAnimeSearched(true)
+    console.log(animeSearched, 'true')
     let animeQuery = e.target.elements.anime.value
     const response = await fetch(`${API}/search/anime?q=${animeQuery}&page=1`)
     const animeData = await response.json()
+    setAnimeSearched(false)
+
 
     // Validation for empty input submission
     if (animeQuery) {
       setDataItems(animeData.results)
-      setAnimeSearched(false)
       setFormError('')
       setInputField('')
 

@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import styled from 'styled-components'
 import { FaSearch } from "react-icons/fa";
 import { AnimeContext } from '../store/AnimeContext'
+// import LoadingIndicator from './LoadingIndicator';
 
 const SearchForm = () => {
   const { handleSubmit, handleInputChange, inputField, formError } = useContext(AnimeContext)
@@ -21,6 +22,7 @@ const SearchForm = () => {
           <FaSearch />
         </Icon>
       </ Form>
+      {/* {animeSearched && <LoadingIndicator />} */}
       <FormError>{formError}</FormError>
     </div>
   )

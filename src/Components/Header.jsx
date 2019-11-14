@@ -4,21 +4,20 @@ import { Link } from 'react-router-dom';
 import SearchForm from './SearchForm';
 
 const Header = () => (
-  <HeaderBar>
+  <HeaderWrapper>
     <Link to='/'>
       <Title>AniPlex</Title>
     </Link>
     <SearchForm />
-  </HeaderBar>
+  </HeaderWrapper>
 )
 
-const HeaderBar = styled.div`
+const HeaderWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex: 1;
 
-  height: 10vh;
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 3rem;
@@ -26,9 +25,9 @@ const HeaderBar = styled.div`
   background: inherit;
 
   a {
-    /* Remove text decoration from Router Link */
     text-decoration: none; 
   }
+
   @media screen and (max-width: 560px) {
     flex-direction: column;
   }
